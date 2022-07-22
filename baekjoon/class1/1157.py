@@ -10,8 +10,6 @@ for i in str :
         count_list.append(1)
 tmp = count_list.copy()
 tmp.sort(reverse=True)
-
-
 if len(tmp)>1 and tmp[0] == tmp[1] :
     print('?')
 else:
