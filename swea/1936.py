@@ -6,7 +6,7 @@ if (A==1):
         print("A")
 elif(A==2):
     if(B==1):
-        println("A")
+        print("A")
     elif(B==3):
         print("B")
 else:
