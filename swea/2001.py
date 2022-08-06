@@ -5,7 +5,7 @@ for i in range(T) :
     N, M = map(int,input().split())
     fly_list = []
 
-    #
+    # 2차원 배열 만들기
     for j in range(N) :
         tmp = list(map(int,input().split()))
         fly_list.append(tmp)
@@ -15,6 +15,7 @@ for i in range(T) :
         for k in range(N-M+1) :
             ressum=0
             for h in range(k,k+M) :
+                # 가로 한줄의 합
                 ressum += sum(fly_list[h][j:j+M])
 
             if ressum > max :
