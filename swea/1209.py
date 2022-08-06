@@ -1,4 +1,4 @@
-T = 1
+T = 10
 
 for i in range(T) :
     N = int(input())
