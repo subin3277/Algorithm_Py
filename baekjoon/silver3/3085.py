@@ -6,7 +6,7 @@ for i in range(N):
     candy.append(list(map(str, input())))
 # 빨강: C 파랑: P 초록: Z 노랑: Y
 maxcandy = N
-while True:
+while N > 1:
 
 # 교환 안하고 찾기
     res = False
@@ -23,12 +23,12 @@ while True:
                 break
         if res: break
     if res: break
-    # 교환할 곳 찾기
 
+    # 교환할 곳 찾기
     for i in range(N):
         for j in range(N - maxcandy + 1):
             tmp = []
-            colorcount = { 'C' : 0, 'P' : 0, 'Z' : 0, 'Y' : 0}
+            colorcount = {'C': 0, 'P': 0, 'Z': 0, 'Y': 0}
             for k in range(j, j + maxcandy):
                 tmp.append(candy[i][k])
                 colorcount[candy[i][k]] += 1
@@ -38,17 +38,17 @@ while True:
                         switchstr = x # 하나만 다른 str
                     if y == maxcandy - 1:
                         moststr = x
-            else : break
-            switchidx = tmp.index(switchstr) + j
-            if (i >= 0 and candy[i-1][switchidx] == moststr) or (i < N-1 and candy[i+1][switchidx] == moststr):
-                res = True
-                break
+
+                switchidx = tmp.index(switchstr) + j
+                if (i >= 0 and candy[i-1][switchidx] == moststr) or (i < N-1 and candy[i+1][switchidx] == moststr):
+                    res = True
+                    break
         if res: break
     if res: break
     for i in range(N):
         for j in range(N - maxcandy + 1):
             tmp = []
-            colorcount = { 'C' : 0, 'P' : 0, 'Z' : 0, 'Y' : 0}
+            colorcount = {'C': 0, 'P': 0, 'Z': 0, 'Y': 0}
             for k in range(j, j + maxcandy):
                 tmp.append(candy[k][i])
                 colorcount[candy[k][i]] += 1
@@ -58,11 +58,10 @@ while True:
                         switchstr = x # 하나만 다른 str
                     if y == maxcandy - 1:
                         moststr = x
-            else: break
-            switchidx = tmp.index(switchstr) + j
-            if (i >= 0 and candy[switchidx][i - 1] == moststr) or (i < N-1 and candy[switchidx][i + 1] == moststr):
-                res = True
-                break
+                switchidx = tmp.index(switchstr) + j
+                if (i >= 0 and candy[switchidx][i - 1] == moststr) or (i < N-1 and candy[switchidx][i + 1] == moststr):
+                    res = True
+                    break
         if res: break
     if res: break
     maxcandy -= 1
