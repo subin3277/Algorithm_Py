@@ -9,10 +9,10 @@ for i in range (T):
         str, num = input().split()
         num = int(num)
         for k in range (num):
-            if count>= 10:
-                print()
-                list = ''
-                count=0
+            if count>= 10: # 한줄에 10개 작성했으면
+                print() # 줄 바꾸기
+                list = '' # 리스트 초기화
+                count=0 # 카운트 초기화
             count+=1
             print(str,end='')
     print()
