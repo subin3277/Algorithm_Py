@@ -5,7 +5,7 @@ for _ in range(N):
     str = input()
     stack = []
     state = True
-    for i in input:
+    for i in str:
         if i == '(':
             stack.append(i)
         else:
