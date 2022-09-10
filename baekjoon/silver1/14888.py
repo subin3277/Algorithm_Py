@@ -1,4 +1,5 @@
 # 연산자 끼워넣기
+from itertools import permutations
 
 N = int(input())
 num_list = list(map(int, input().split()))
@@ -7,35 +8,22 @@ cal = ["+"] * A + ["-"] * B + ["*"] * C + ["/"] * D
 
 maxres = -1000000000
 minres = 1000000000
-if len(cal) == 1:
-    if cal[0] == '+':
-        maxres = minres = num_list[0] + num_list[1]
-    elif cal[0] == '-':
-        maxres = minres = num_list[0] - num_list[1]
-    elif cal[0] == '*':
-        maxres = minres = num_list[0] * num_list[1]
-    elif cal[0] == '/':
-        maxres = minres = num_list[0] // num_list[1]
-else:
+res = []
+for p in tuple(set(permutations(cal))): # 모든 연산자 순열
+    tmp = num_list[0]
+    for k in range(1, len(num_list)): # 구한 연산자 순서대로 계산
+        if p[k - 1] == '+':
+            tmp += num_list[k]
+        elif p[k - 1] == '-':
+            tmp -= num_list[k]
+        elif p[k - 1] == '*':
+            tmp *= num_list[k]
+        elif p[k - 1] == '/':
+            if tmp < 0: # 음수 / 양수를 위한 처리
+                tmp = (-tmp) // num_list[k] * (-1)
+            else:
+                tmp = tmp // num_list[k]
+    res.append(tmp)
 
-    for i in range(len(cal)):
-        for j in range(len(cal)-1):
-            tmp = num_list[0]
-            for k in range(1, len(num_list)):
-                if cal[k-1] == '+':
-                    tmp += num_list[k]
-                elif cal[k-1] == '-':
-                    tmp -= num_list[k]
-                elif cal[k-1] == '*':
-                    tmp *= num_list[k]
-                elif cal[k-1] == '/':
-                    tmp = tmp // num_list[k]
-            maxres = max(maxres, tmp)
-            minres = min(minres, tmp)
-            cal[j], cal[j+1] = cal[j+1], cal[j]
-            print(cal)
-
-print(maxres)
-print(minres)
-
-#해결xxxxxxxxxxx
+print(max(res)) # 최댓값
+print(min(res)) # 최솟값
