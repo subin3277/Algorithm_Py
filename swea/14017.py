@@ -30,5 +30,7 @@ for test in range(1, T+1):
             ch2[p] = c
         par[c] = p
     root = num_list[0]
+    print(ch1)
+    print(ch2)
     print(f'#{test}', end= " ")
     preorder(root)
