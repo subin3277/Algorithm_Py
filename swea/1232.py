@@ -47,5 +47,3 @@ for test in range(1, T+1):
                 num.append(t1 // t2)
 
     print(f'#{test} {num[0]}')
-
-    # 해결xxxxxxxxxxxxxxxxx
