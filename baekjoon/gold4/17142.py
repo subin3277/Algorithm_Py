@@ -1,4 +1,4 @@
-# 연구소2
+# 연구소3
 from collections import deque
 from itertools import combinations
 from copy import deepcopy
