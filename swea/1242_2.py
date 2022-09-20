@@ -14,16 +14,16 @@ import sys
 sys.stdin = open("input.txt", "r")
 
 T = int(input())
-dict1 = {'0':'0001101','1' : '0011001', '2' : '0010011','3' : '0111101','4' : '0100011','5': '0110001', '6' : '0101111', '7':'0111011','8':'0110111','9':'0001011'}
+dict1 = {'0':'0000', '1':'0001', '2':'0010','3':'0011','4':'0100','5':'0101','6':'0110','7':'0111','8':'1000','9':'1001','A':'1010','B':'1011','C':'1100','D':'1101','E':'1110','F':'1111'}
 dict3 = {'211':0,'221':1,'122':2,'411':3,'132':4,'231':5,'114':6,'312':7,'213':8,'112':9}
 for test in range(1, T+1):
     N, M = map(int, input().split())
     arr = [input() for _ in range(N)]
-    old = []
+    old_st = []
     ans = []
     for st in arr:
-        if st != old and st.count('0')!=len(st):
-            old = st # 이전 문자열과 바뀌면 처리
+        if st != old_st and st.count('0')!=len(st):
+            old_st = st # 이전 문자열과 바뀌면 처리
             bst = ""
             for ch in st:
                 bst += dict1[ch]
@@ -39,8 +39,8 @@ for test in range(1, T+1):
             # [3] 가장 작은 width을 기준으로 나눗셈(단위두께)
             pwd = []
             for i in range(1, len(cnts), 4):
-                mn = cnts[i:i+3]
-                key = str(cnts[i]//mn) + str(cnts[i+1]//mn + str(cnts[i+2]//mn))
+                mn = min(cnts[i:i+3])
+                key = str(cnts[i]//mn)+str(cnts[i+1]//mn)+str(cnts[i+2]//mn)
                 pwd.append(dict3[key])
 
             # [4] 8개씩 숫자 중복 제거해서 리스트 만들기
