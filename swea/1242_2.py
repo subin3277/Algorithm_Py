@@ -22,7 +22,7 @@ for test in range(1, T+1):
     old = []
     ans = []
     for st in arr:
-        if st != old and '1' in st:
+        if st != old and st.count('0')!=len(st):
             old = st # 이전 문자열과 바뀌면 처리
             bst = ""
             for ch in st:
