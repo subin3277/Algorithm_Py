@@ -25,11 +25,9 @@ def startapi():
 
 def waitinglineapi(auth_key):
     url = BASE_URL + "/waiting_line"
-    headers = {'auth_key': auth_key}
+    headers = {'Authorization': auth_key}
     response = requests.get(url, headers=headers)
     response = json.loads(response.text)
-    #response = json.loads(requests.get(url, headers=headers).json())
-    print(response)
     waiting_line = response['waiting_line']
     return waiting_line
 
