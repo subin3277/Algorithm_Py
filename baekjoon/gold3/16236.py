@@ -13,11 +13,16 @@ def move(x1, y1): # 최소 거리로 갈 수 있는 곳 찾기
     while queue:
         x, y, k = queue.popleft()
         if (x, y) in fish:
-            fish.remove((x, y)) # 먹은 물고기 지우기
-            lst[x][y] = 0
+            tmp = [(x, y)]
+            while queue:
+                tx, ty, tk = queue.popleft()
+                if tk == k and (tx, ty) in fish:
+                    tmp.append((tx, ty))
+            mx, my = min(tmp)
+            fish.remove((mx ,my)) # 먹은 물고기 지우기
+            lst[mx][my] = 0
             ans += k # 이동거리 더하기
-            print(k)
-            return x, y # 상어 위치 갱신
+            return mx, my # 상어 위치 갱신
 
         for i in range(4):
             nx = x + dx[i]
