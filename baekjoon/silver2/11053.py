@@ -1,5 +1,4 @@
 # 가장 긴 증가하는 부분 수열
-
 N = int(input())
 lst = list(map(int, input().split()))
 ans = [0] * N
