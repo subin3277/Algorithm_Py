@@ -8,12 +8,12 @@ for _ in range(T):
     for _ in range(K):
         X, Y = map(int, input().split())
         order[Y].append(X)
-    print(order)
+
     W = int(input())
 
     stack = order[W]
     stack2 = []
-    ans = 0
+    ans = time[W]
     while True:
         tmp = 0
         while stack:
@@ -24,5 +24,7 @@ for _ in range(T):
         if not stack2:
             print(ans)
             break
-        stack = stack2
+        stack = list(set(stack2))
         stack2 = []
+
+# 해결 xxxxxxxxxx
