@@ -1,4 +1,4 @@
-# 미해결
+# 석유시추
 def solution(land):
     answer = 0
     n = len(land) # 5
@@ -21,15 +21,16 @@ def solution(land):
                 dict[key] = 1
                 cnt[i][j] = key
                 while queue :
-                    (ti, tj) = queue.pop(0)
+                    dx, dy = queue.pop(0)
                     for x in range(4) :
-                        ti += v[x]
-                        tj += w[x]
-                        if 0 <= ti < n and 0 <= tj < m and visitied[ti][tj] != True and land[ti][tj] == 1 :
+                        ti = dx + v[x]
+                        tj = dy + w[x]
+                        if 0 <= ti < n and 0 <= tj < m and not visitied[ti][tj] :
                             visitied[ti][tj] = True
-                            queue.append((ti, tj))
-                            dict[key] += 1
-                            cnt[ti][tj] = key
+                            if land[ti][tj] == 1 :
+                                queue.append((ti, tj))
+                                dict[key] += 1
+                                cnt[ti][tj] = key
     
     cnt_list = [0 for _ in range(m)]
 
@@ -42,6 +43,11 @@ def solution(land):
     answer = max(cnt_list)
     return answer
 
-land1 = [[1,1,1,1],[1,0,0,0],[1,0,1,0],[1,0,0,0],[1,1,1,1]]
+land1 = [[1,1,1,0,0],[1,0,0,0,0],[1,0,1,0,0],[1,0,0,0,0],[1,1,1,0,0]]
 land2 = [[1, 0, 1, 0, 1, 1], [1, 0, 1, 0, 0, 0], [1, 0, 1, 0, 0, 1], [1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 1], [1, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1]]
-print(solution(land1))
+land3 = [[0, 0, 0, 1, 1, 1, 1, 1],
+          [0, 0, 0, 0, 0, 0, 0, 1],
+           [1, 1, 1, 1, 1, 1, 1, 1],
+           [1, 1, 1, 0, 0, 0, 0, 0],
+           [1, 1, 1, 0, 0, 0, 1, 1]]
+print(solution(land3))
