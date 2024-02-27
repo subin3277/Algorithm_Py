@@ -1,23 +1,27 @@
 # 1 빼기
 
 N = int(input())
-answer = 0
-while N > 0:
-    if N == 1:
-        answer += 1
-        break
+answer = N + 1
 
-    str_N = str(N)
-    if '1' in str_N:
-        str_N = str_N.replace('1', '')
-        if str_N == '' :
-            N = 0
+def BT(res, cnt, log) :
+    global answer
+    if res == 0 :
+        answer = min(answer, cnt)
+        return
+
+    if cnt > answer :
+        return
+
+    str_res = str(res)
+    if '1' in str_res:
+        str_res = str_res.replace('1', '', 1)
+        if str_res == '' :
+            new_res = 0
         else :
-            N = int(str_N)
-        answer += 1
-    else :
-        answer += ((N-1) % 10) 
-        N -= ((N-1) % 10)
-print(answer)
+            new_res = int(str_res)
+        BT(new_res, cnt + 1, [*log, new_res])
 
-# 미해결xxxxxxxxxx
+    BT(res - 1, cnt + 1, [*log, res - 1])
+
+BT(N, 0, [N])
+print(answer)
